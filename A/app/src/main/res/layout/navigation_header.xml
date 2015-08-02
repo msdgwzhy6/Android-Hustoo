@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+
+    android:id="@+id/header"
+    android:background="@drawable/heback"
+
+    >
+
+    <com.scb.administrator.a.CircleImageView
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/iv_login"
+
+        android:background="#00000000"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+      android:src="@drawable/ic_default_avatar_lite"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_below="@+id/iv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="登录/注册"
+        android:scaleX="1.0"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="22dp"
+        android:layout_marginLeft="25dp"
+        android:textColor="#ffffff"
+        android:textSize="18sp"/>
+
+    <ImageView
+
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/abc_spinner_mtrl_am_alpha"
+        android:background="#00000000"
+        />
+
+    <TextView
+        android:id="@+id/month"
+        android:text="@string/month"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:layout_marginRight="65dp"
+        android:layout_marginTop="21dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textSize="27sp"/>
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/yue"
+        android:text="@string/yue"
+        android:layout_marginRight="65dp"
+        android:layout_marginTop="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textSize="27sp"
+
+        />
+
+</RelativeLayout>

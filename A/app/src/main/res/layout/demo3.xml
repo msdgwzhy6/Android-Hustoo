@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="6dp"
+    android:background="#ffffff"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/oneM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dayMusic"
+        android:textScaleX="1.0"
+        android:textSize="15sp"
+        android:layout_marginBottom="5dp"
+        android:textColor="#8d8d8d"
+        />
+    <TextView
+
+        android:layout_below="@+id/oneM"
+        android:id="@+id/oneMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initMusic"
+        android:layout_marginTop="6dp"
+        android:textScaleX="1.0"
+        android:textSize="17sp"
+        android:textColor="#8d8d8d"
+        />
+
+    <ImageView
+        android:layout_below="@+id/oneMovie"
+        android:id="@+id/movie"
+        android:layout_margin="15dp"
+        android:layout_gravity="left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

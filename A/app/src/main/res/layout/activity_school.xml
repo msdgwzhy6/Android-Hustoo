@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.scb.administrator.a.ui.SchoolActivity">
+
+    <RelativeLayout
+
+        android:background="#18b4ed"
+        android:layout_width="match_parent"
+        android:layout_height="53dp">
+
+
+        <ImageView
+            android:id="@+id/left"
+            android:padding="17dp"
+            android:onClick="back"
+            android:background="@drawable/drawer_selector"
+            android:src="@drawable/umeng_fb_back_normal"
+            android:layout_width="50dp"
+            android:layout_height="54dp" />
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_toRightOf="@id/left"
+            android:gravity="center_vertical"
+
+
+
+            android:scaleX="1.0"
+            android:text="School Corner"
+
+            android:textColor="#ffffff"
+            android:textSize="19sp"
+            />
+    </RelativeLayout>
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        card_view:cardCornerRadius="4dp">
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="6dp"
+        >
+
+
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/id_swipe_ly_s"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+       <ListView
+
+           android:padding="1dp"
+           android:id="@+id/s_list"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+
+
+       </ListView>
+
+</android.support.v4.widget.SwipeRefreshLayout>
+
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:id="@+id/header_view"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="所有话题 "
+                android:paddingLeft="6dp"
+                android:layout_marginTop="8dp"
+
+                android:textSize="15sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:background="@color/main"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/my_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <View
+android:layout_below="@id/my_post"
+
+                android:layout_marginTop="4dp"
+                android:background="#ad400000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+        </RelativeLayout>
+        <com.software.shell.fab.FloatingActionButton
+            android:id="@+id/s_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:type="normal"
+            fab:image="@drawable/ic_edit_white_24dp"
+            fab:button_color="#11800A"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="18dp"
+            fab:image_size="18dp"
+            fab:animation_onShow="@anim/fab_scale_up"
+            fab:animation_onHide="@anim/fab_scale_down"
+            fab:button_colorPressed="#4b3520"
+
+
+            />
+</RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -1,0 +1,27 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        42735070 com.scb.administrator.a/.MainActivity filter 42a80928
+ 
+Packages:
+  Package [com.scb.administrator.a] (41738188):
+    userId=10134 gids=[]
+    sharedUser=null
+    pkg=Package{42be0df0 com.scb.administrator.a}
+    codePath=/mnt/asec/com.scb.administrator.a-2/pkg.apk
+    resourcePath=/mnt/asec/com.scb.administrator.a-2/pkg.apk
+    nativeLibraryPath=/mnt/asec/com.scb.administrator.a-2/lib
+    versionCode=1
+    applicationInfo=ApplicationInfo{42afcd80 com.scb.administrator.a}
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP EXTERNAL_STORAGE ]
+    versionName=1.0
+    dataDir=/data/data/com.scb.administrator.a
+    targetSdk=21
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2015-06-11 14:10:08
+    firstInstallTime=2015-05-12 23:39:58
+    lastUpdateTime=2015-06-11 14:10:17
+    signatures=PackageSignatures{416a1d20 [4163f6d8]}
+    permissionsFixed=true haveGids=true installStatus=1
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP EXTERNAL_STORAGE ]
+    User 0:  installed=true stopped=false notLaunched=false enabled=0

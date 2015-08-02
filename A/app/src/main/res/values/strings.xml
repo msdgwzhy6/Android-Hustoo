@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hustoo</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_wenzhang">Wenzhang</string>
+    <string name="title_activity_login">Login</string>
+    <string name="mima">密码</string>
+    <string name="youxiang">邮箱（用来修改/找回密码）</string>
+    <string name="name">昵称</string>
+    <string name="title_activity_register">RegisterActivity</string>
+
+    <string name="title_activity_person">PersonActivity</string>
+    <string name="title_activity_web_view">WebViewActivity</string>
+    <string name="yue">月</string>
+    <string name="month">九</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="home">个人中心</string>
+    <string name="title_activity_tongzhi">TongzhiActivity</string>
+    <string name="title_activity_create">CreateActivity</string>
+    <string name="title_activity_commet">CommetActivity</string>
+    <string name="input">请输入帐号邮箱</string>
+    <string name="find_mima">找回/修改密码</string>
+    <string name="welcome">欢迎</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="Icome">我来</string>
+    <string name="xiaoYu">晓雨的故事 / RainDroid</string>
+    <string name="dayWen">每日一文</string>
+    <string name="dayMusic">每日一乐</string>
+    <string name="initMusic">我敢在你怀里孤独</string>
+    <string name="shareLocationPrompt">如有精彩内容，可投稿到 ---775721712@163.com </string>
+    <string name="imfor">个人信息</string>
+    <string name="title_activity_school">SchoolActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="about">"Hustoo  Version 1.0 \n\n诞生于 ： 华中科技大学 \n\n联系：775721712@163.com\n\n感谢github上的开源控件 \n\n感谢 http://www.jcodecraeer.com/ 网站\n\n反馈：http://weibo.com/hnjmscb/ \n\n代码整理后可开源 ."</string>
+
+</resources>

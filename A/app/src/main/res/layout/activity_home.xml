@@ -1,0 +1,202 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    >
+
+
+    <RelativeLayout
+        android:background="@color/main"
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+
+
+    <ImageView
+        android:id="@+id/left"
+        android:padding="17dp"
+        android:onClick="back"
+        android:background="@drawable/drawer_selector"
+        android:src="@drawable/umeng_fb_back_normal"
+        android:layout_width="50dp"
+        android:layout_height="54dp" />
+
+
+    <TextView
+        android:text="@string/home"
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+
+        android:gravity="center_vertical"
+
+        android:scaleX="1.0"
+
+        android:textColor="@color/white"
+        android:layout_toRightOf="@id/left"
+        android:textSize="19sp"
+        />
+
+
+
+
+
+
+
+</RelativeLayout>
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:background="#00000000"
+        android:id="@+id/sv"
+        android:scrollbarStyle="outsideOverlay"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+   <RelativeLayout
+
+       android:id="@+id/re2"
+       android:background="@color/main"
+       android:layout_width="match_parent"
+       android:layout_height="172dp" >
+
+       <com.scb.administrator.a.CircleImageView
+          android:id="@+id/header"
+           android:layout_width="65dp"
+           android:layout_height="65dp"
+           android:scaleType="centerInside"
+
+           android:layout_centerHorizontal="true"
+           android:layout_marginTop="21dp"
+           android:src="@drawable/ic_default_avatar_lite"
+           />
+
+
+    </RelativeLayout>
+
+    <com.software.shell.fab.FloatingActionButton
+        android:id="@+id/action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fab:type="normal"
+        fab:image="@drawable/abc_ic_menu_selectall_mtrl_alpha"
+        fab:button_color="#4caf50"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="2dp"
+        fab:image_size="25dp"
+
+        android:onClick="fabOnclick"
+        fab:button_colorPressed="#4b3520"
+        android:layout_marginTop="120dp"
+
+        />
+
+        <TextView
+            android:text="@string/imfor"
+            android:textScaleX="1.0"
+            android:textSize="16sp"
+            android:layout_below="@+id/re2"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="17dp"
+            android:textColor="#8d8d8d"
+            android:id="@+id/geren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/ni"
+        android:text="@string/name"
+        android:layout_marginLeft="13dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/geren"
+        android:textColor="#8d8d8d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textScaleX="1.0"
+        android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/nick"
+            android:text="路途遥远"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="13dp"
+            android:layout_marginBottom="7dp"
+            android:layout_below="@id/ni"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textScaleX="1.0"
+            android:textSize="16sp"/>
+
+
+
+        <TextView
+            android:id="@+id/si"
+            android:text="签名"
+            android:paddingLeft="29dp"
+            android:textColor="#8d8d8d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textScaleX="1.0"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/geren"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:paddingLeft="29dp"
+            android:id="@+id/sig"
+
+            android:text="路途遥远，勿忘初心."
+            android:gravity="center_horizontal"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textScaleX="1.0"
+            android:textSize="16sp"
+            android:paddingRight="4dp"
+            android:layout_alignTop="@+id/nick"
+            android:layout_alignLeft="@+id/si"
+            android:layout_alignStart="@+id/si" />
+
+<View
+    android:id="@+id/fir"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginTop="18dp"
+    android:background="#D9D9D9"
+    android:layout_below="@id/sig"
+/>
+
+
+
+        <TextView
+            android:id="@+id/check_new"
+            android:layout_margin="13dp"
+            android:text="退出帐号"
+            android:layout_below="@id/fir"
+            android:textColor="#8d8d8d"
+            android:textScaleX="1.0"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_below="@id/check_new"
+            android:id="@+id/thi"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D9D9D9"
+
+            />
+</RelativeLayout>
+</ScrollView>
+</LinearLayout>

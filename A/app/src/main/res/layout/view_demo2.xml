@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="8dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:background="#00000000">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        card_view:cardCornerRadius="4dp">
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/id_swipe_ly_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+
+
+
+
+
+        <ListView
+            android:id="@+id/qy_list"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+
+            />
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.v7.widget.CardView>
+
+    <com.software.shell.fab.FloatingActionButton
+        android:id="@+id/w_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fab:type="normal"
+        fab:image="@drawable/ic_edit_white_24dp"
+        fab:button_color="#11800A"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="18dp"
+        fab:image_size="18dp"
+        fab:animation_onShow="@anim/fab_scale_up"
+        fab:animation_onHide="@anim/fab_scale_down"
+        fab:button_colorPressed="#4b3520"
+
+
+        />
+</RelativeLayout>
+

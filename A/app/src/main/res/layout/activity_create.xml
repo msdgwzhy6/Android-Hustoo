@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:background="@color/main"
+        android:id="@+id/re_create"
+
+        >
+
+
+
+        <ImageView
+            android:onClick="back"
+            android:id="@+id/left"
+            android:padding="17dp"
+            android:background="@drawable/drawer_selector"
+            android:src="@drawable/umeng_fb_back_normal"
+            android:layout_width="50dp"
+            android:layout_height="53dp" />
+
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+    android:layout_toRightOf="@id/left"
+
+
+
+            android:text="发布话题"
+
+            android:gravity="center_vertical"
+
+            android:scaleX="1.0"
+
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            />
+
+        <ImageView
+         android:padding="15dp"
+            android:id="@+id/cre_ok"
+            android:layout_width="50dp"
+            android:layout_height="52dp"
+            android:scaleType="centerInside"
+            android:background="@color/transpa"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/umeng_fb_tick_normal"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edit_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/re_create"
+        android:inputType="textMultiLine"
+        app:met_maxCharacters="15"
+        android:scaleX="1.0"
+        android:hint="Title"
+
+        android:paddingLeft="4dip"
+        android:paddingRight="4dip"
+        android:gravity="start"
+        android:textSize="16sp"
+        android:layout_margin="16dp"
+
+        app:met_primaryColor="@color/main"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="Title"
+        >
+
+        <requestFocus />
+    </com.rengwuxian.materialedittext.MaterialEditText>
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edit_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_title"
+        android:inputType="textMultiLine"
+      android:maxLength="150"
+      android:minLines="12"
+        android:scaleX="1.0"
+        app:met_primaryColor="@color/main"
+        app:met_floatingLabel="highlight"
+        android:paddingLeft="4dip"
+        android:paddingRight="4dip"
+        app:met_floatingLabelText="说点故事吧"
+        android:gravity="left"
+        android:textSize="16sp"
+        android:layout_margin="12dp"
+        android:hint="说点故事吧"
+        >
+    </com.rengwuxian.materialedittext.MaterialEditText>
+    </RelativeLayout>
+
+
+
+
