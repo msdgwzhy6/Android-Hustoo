@@ -77,7 +77,8 @@ public class HomeActivity extends Activity {
             imageInit(URL);
 
         }
-        Bmob.initialize(HomeActivity.this, "4ef015e97fb35a0f58b00043679e2b9a");
+        //添加你的bmob的Key
+        Bmob.initialize(HomeActivity.this, YOUR_Bmob_KEY);
        currentUser = BmobUser.getCurrentUser(this, User.class);
         if (currentUser != null) {
             // 允许用户使用应用,即有了用户的唯一标识符，可以作为发布内容的字段
