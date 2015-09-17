@@ -136,7 +136,8 @@ public class MainActivity extends FragmentActivity {
         mSplashing = true;
         mHandler.sendEmptyMessageDelayed(0, 2000);
       //  mMainHandler.sendEmptyMessageDelayed(MSG_SHOW_LAYOUT, 3000);
-        Bmob.initialize(MainActivity.this, "4ef015e97fb35a0f58b00043679e2b9a");
+        //添加你的bmob的Key
+        Bmob.initialize(MainActivity.this,  KEY );
 
         initView();
 
