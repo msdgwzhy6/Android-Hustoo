@@ -58,8 +58,8 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school);
         actualListView = (ListView) findViewById(R.id.s_list);
-
-        Bmob.initialize(SchoolActivity.this, "4ef015e97fb35a0f58b00043679e2b9a");
+  //添加你的bmob的Key
+        Bmob.initialize(SchoolActivity.this, KEY);
 
 
         header = (RelativeLayout) findViewById(R.id.header_view);
