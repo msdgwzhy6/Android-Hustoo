@@ -67,8 +67,8 @@ public class ViewPagerFragment2 extends Fragment implements SwipeRefreshLayout.O
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        Bmob.initialize(getActivity(), "4ef015e97fb35a0f58b00043679e2b9a");
+  //添加你的bmob的Key
+        Bmob.initialize(getActivity(), KEY);
         actualListView = (ListView) getActivity().findViewById(R.id.qy_list);
         mSwipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.id_swipe_ly_2);
         mSwipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
