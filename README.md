@@ -21,14 +21,14 @@ weather forecast, daily notes chicken stock share music, etc.
 
 
 ##Apk Download
- <a href="http://hustoo.bmob.cn">APK</a>
+ <a href="http://android.myapp.com/myapp/detail.htm?apkName=com.scb.administrator.a">最新版本APK</a>
 
 
 ##Developed By
 
 
 - songchuanbiao - 1073216732@qq.com
-
+- <a href="http://blog.csdn.net/cxmscb">个人博客</a> -
 
 
 License
