@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SpreadView">
+      <attr name="xDown" format="integer" />
+      <attr name="yDown" format="integer" />
+        <attr name="start" format="boolean" />
+        <attr name="delay" format="integer" />
+        <attr name="first" format="boolean" />
+    </declare-styleable>
+
+
+
+
+ </resources>

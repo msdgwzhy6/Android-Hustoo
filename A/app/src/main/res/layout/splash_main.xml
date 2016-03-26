@@ -1,0 +1,75 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main"
+   >
+
+
+
+    <com.scb.administrator.a.SpreadView
+
+        android:id="@+id/sv"
+        app:xDown="0"
+        app:yDown="0"
+       app:start="false"
+        app:first="true"
+        app:delay="0"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <com.scb.administrator.a.SpreadView
+
+        android:id="@+id/sv1"
+        app:xDown="0"
+        app:yDown="0"
+        app:start="false"
+        app:first="true"
+        app:delay="1900"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+    <com.scb.administrator.a.SpreadView
+
+        android:id="@+id/sv2"
+        app:xDown="0"
+        app:yDown="0"
+        app:first="true"
+        app:start="false"
+        app:delay="3800"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000"
+        android:id="@+id/re_create2"
+        >
+
+        <TextView
+            android:gravity="center"
+            android:textSize="19sp"
+         android:layout_margin="80dp"
+android:textStyle="italic"
+            android:textColor="@color/white"
+            android:text="H\nU\nS\nT\nO\nO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/go"
+            android:background="#00000000"
+            android:src="@drawable/fap_login"
+            android:layout_margin="40dp"
+            android:scaleType="centerCrop"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="54dp"
+            android:layout_height="54dp" />
+        </RelativeLayout>
+</FrameLayout>

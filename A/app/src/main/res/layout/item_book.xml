@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="80dp">
+
+    <com.scb.administrator.a.CircleImageView
+        android:id="@+id/book_logo"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+
+        android:scaleType="centerInside"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@drawable/ic_default_avatar_lite"
+        />
+
+    <TextView
+        android:id="@+id/book_text"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:paddingLeft="20dp"
+        android:paddingRight="8dp"
+        android:gravity="center_vertical"
+        android:textColor="#11800A"
+
+        android:textSize="16sp"
+        android:text="123456"
+        android:scaleX="1.0"
+
+        />
+
+    <TextView
+        android:id="@+id/book_uri"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        />
+
+</LinearLayout>

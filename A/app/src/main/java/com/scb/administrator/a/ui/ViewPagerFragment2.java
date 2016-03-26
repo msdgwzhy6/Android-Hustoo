@@ -1,7 +1,10 @@
 package com.scb.administrator.a.ui;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import android.support.annotation.Nullable;
@@ -17,6 +20,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.orhanobut.hawk.Hawk;
+import com.orhanobut.hawk.HawkBuilder;
 import com.scb.administrator.a.MyApplication;
 import com.scb.administrator.a.R;
 import com.scb.administrator.a.adapter.MyAdapter;
@@ -43,11 +48,6 @@ public class ViewPagerFragment2 extends Fragment implements SwipeRefreshLayout.O
     private SwipeRefreshLayout mSwipeLayout;
 
     private MyAdapter mAdapter;
-    private ListView actualListView;
-    private FloatingActionButton bt;
-    private List<QiangYu> mData;
-    private boolean scrollFlag = false;// 标记是否滑动
-    private int lastVisibleItemPosition = 0;// 标记上次滑动位置
 
 
     @Override
@@ -56,110 +56,41 @@ public class ViewPagerFragment2 extends Fragment implements SwipeRefreshLayout.O
         super.onResume();
     }
 
-    @Override
-    public void onDestroy() {
-
-      ;
-        super.onDestroy();
-    }
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-  //添加你的bmob的Key
-        Bmob.initialize(getActivity(), KEY);
-        actualListView = (ListView) getActivity().findViewById(R.id.qy_list);
+
+
+        ListView actualListView = (ListView) getActivity().findViewById(R.id.qy_list);
         mSwipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.id_swipe_ly_2);
         mSwipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
         mSwipeLayout.setOnRefreshListener(this);
 
 
-        mData = new ArrayList<>();
-        mAdapter = new MyAdapter(getActivity(),mData);
+        List<QiangYu> mData = new ArrayList<>();
+        mAdapter = new MyAdapter(getActivity(), mData);
         actualListView.setAdapter(mAdapter);
+        Hawk.init(getActivity())
+                .setEncryptionMethod(HawkBuilder.EncryptionMethod.NO_ENCRYPTION)
+                .setStorage(HawkBuilder.newSqliteStorage(getActivity()))
+                .build();
 
         onRefresh();
-        bt = (FloatingActionButton) getActivity().findViewById(R.id.w_button);
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-
-                if (MyApplication.getInstance().getCurrentUser() != null) {
-                    Intent intent = new Intent();
-                    intent.setClass(getActivity(),CreateActivity.class);
-                    startActivity(intent);
-                } else   Toast.makeText(getActivity(),"请先登录帐号",Toast.LENGTH_SHORT).show();
-
-            }
-        });
 
         actualListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), CommentActivity.class);
-                intent.putExtra("data", mData.get(position));
+                intent.putExtra("data", mAdapter.getItem(position));
                 startActivity(intent);
             }
         });
 
-       actualListView.setOnScrollListener(new OnScrollListener() {
-           @Override
-           public void onScrollStateChanged(AbsListView view, int scrollState) {
-               switch (scrollState) {
-                   // 当不滚动时
-                   case OnScrollListener.SCROLL_STATE_IDLE:// 是当屏幕停止滚动时
-                       scrollFlag = false;
-                       // 判断滚动到底部
-                       if (actualListView.getLastVisiblePosition() == (actualListView
-                               .getCount() - 1)) {
-                          // toTopBtn.setVisibility(View.VISIBLE);
 
-                           bt.hide();
-                       }
-                       // 判断滚动到顶部
-                       if (actualListView.getFirstVisiblePosition() == 0) {
-                          // toTopBtn.setVisibility(View.GONE);
-                           bt.show();
-                       }
-
-                       break;
-                   case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:// 滚动时
-                       scrollFlag = true;
-                       break;
-                   case OnScrollListener.SCROLL_STATE_FLING:// 是当用户由于之前划动屏幕并抬起手指，屏幕产生惯性滑动时
-                       scrollFlag = true;
-                       break;
-               }
-           }
-
-           @Override
-           public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-               if (scrollFlag
-                       && ScreenUtil.getScreenViewBottomHeight(actualListView) <= ScreenUtil
-                       .getScreenHeight(getActivity())){
-                   if (firstVisibleItem < lastVisibleItemPosition){
-                       // 上滑
-                       //toTopBtn.setVisibility(View.VISIBLE);
-                       bt.show();
-                   }
-                   else if(firstVisibleItem > lastVisibleItemPosition){
-                       // 下滑
-                      // toTopBtn.setVisibility(View.GONE);
-                       bt.hide();
-                   }else {
-                       return;
-                   }
-                   lastVisibleItemPosition = firstVisibleItem;
-
-               }
-
-           }
-       });
 
     }
 
@@ -176,12 +107,13 @@ public class ViewPagerFragment2 extends Fragment implements SwipeRefreshLayout.O
     @Override
     public void onRefresh() {
         BmobQuery<QiangYu> query = new BmobQuery<QiangYu>();
-        query.order("-updatedAt");
-        BmobDate date = new BmobDate(new Date(System.currentTimeMillis()));
-        query.addWhereLessThan("updatedAt", date);
+        //负号降序
+        query.order("-comment");
+
         query.include("author");
         query.setLimit(10);
-        query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
+
+
         query.setMaxCacheAge(TimeUnit.DAYS.toMillis(1));//此表示缓存一天
         query.findObjects(getActivity(), new FindListener<QiangYu>() {
 
@@ -189,8 +121,9 @@ public class ViewPagerFragment2 extends Fragment implements SwipeRefreshLayout.O
             @Override
             public void onSuccess(List<QiangYu> list) {
 
+                Hawk.remove("10");
+                Hawk.put("10", list);
 
-                mData = list;
                 mAdapter.refresh(list);
 
                 mSwipeLayout.setRefreshing(false);
@@ -198,7 +131,13 @@ public class ViewPagerFragment2 extends Fragment implements SwipeRefreshLayout.O
 
             @Override
             public void onError(int i, String s) {
-Toast.makeText(getActivity(),"检查网络后下拉刷新",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"检查网络后下拉刷新",Toast.LENGTH_SHORT).show();
+
+                List<QiangYu> value = Hawk.get("10");
+                if(value!=null) {
+
+                    mAdapter.refresh(value);
+                }
                 mSwipeLayout.setRefreshing(false);
             }
         });

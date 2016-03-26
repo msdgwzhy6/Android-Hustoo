@@ -10,7 +10,7 @@
 
         android:background="#18b4ed"
         android:layout_width="match_parent"
-        android:layout_height="53dp">
+        android:layout_height="51dp">
 
 
         <ImageView
@@ -33,8 +33,8 @@
 
 
             android:scaleX="1.0"
-            android:text="School Corner"
-
+            android:text="School  Corner"
+            android:paddingLeft="2dp"
             android:textColor="#ffffff"
             android:textSize="19sp"
             />
@@ -44,14 +44,13 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="2dp"
         card_view:cardCornerRadius="4dp">
     <RelativeLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="6dp"
+
+
         >
 
 
@@ -64,8 +63,9 @@
 
        <ListView
 
-           android:padding="1dp"
+
            android:id="@+id/s_list"
+           android:scrollbars="none"
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
 
@@ -84,12 +84,12 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="所有话题 "
+                android:text="All-Topic"
                 android:paddingLeft="6dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
 
                 android:textSize="15sp"
-                android:padding="4dp"
+                android:padding="2dp"
                 android:textColor="@color/white"
                 android:background="@color/main"
                 android:layout_marginBottom="8dp"
@@ -99,8 +99,8 @@
             <View
 android:layout_below="@id/my_post"
 
-                android:layout_marginTop="4dp"
-                android:background="#ad400000"
+                android:layout_marginTop="2dp"
+         android:background="@color/light_gray"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
 
@@ -117,6 +117,7 @@ android:layout_below="@id/my_post"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="18dp"
             fab:image_size="18dp"
+
             fab:animation_onShow="@anim/fab_scale_up"
             fab:animation_onHide="@anim/fab_scale_down"
             fab:button_colorPressed="#4b3520"

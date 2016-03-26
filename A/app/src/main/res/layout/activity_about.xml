@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.scb.administrator.a.util.AboutActivity">
+
+    tools:context="com.scb.administrator.a.ui.AboutActivity">
     <RelativeLayout
         android:id="@+id/we_comment"
         android:background="@color/main"
@@ -25,7 +26,7 @@
             android:layout_toRightOf="@id/left"
             android:background="@color/main"
             android:gravity="center_vertical"
-
+            android:paddingLeft="2dp"
             android:scaleX="1.0"
             android:text="关于"
             android:textColor="@color/white"
@@ -34,6 +35,7 @@
     </RelativeLayout>
 
   <LinearLayout
+      android:background="@color/white"
       android:paddingLeft="50dp"
       android:paddingRight="50dp"
       android:paddingTop="50dp"
@@ -45,17 +47,19 @@
       >
 
       <ImageView
-          android:src="@drawable/ic"
+          android:layout_marginBottom="20dp"
+          android:src="@mipmap/ic_launcher"
           android:scaleType="centerInside"
-          android:layout_width="match_parent"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content" />
 
 <TextView
+    android:textColor="#11800A"
     android:scaleX="1.0"
     android:id="@+id/about_tv"
     android:scaleY="1.0"
     android:autoLink="email|phone|web"
-    android:layout_marginTop="20dp"
+
     android:text="诞生于 ： 华中科技大学"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />

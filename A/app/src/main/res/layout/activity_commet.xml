@@ -8,7 +8,7 @@
         android:id="@+id/we_comment"
         android:background="@color/main"
         android:layout_width="match_parent"
-        android:layout_height="53dp">
+        android:layout_height="50dp">
 
         <ImageView
             android:onClick="back"
@@ -26,104 +26,105 @@
         android:layout_toRightOf="@id/left"
         android:background="@color/main"
         android:gravity="center_vertical"
-
+android:paddingLeft="2dp"
         android:scaleX="1.0"
-        android:text="发表评论"
+        android:text="话题"
         android:textColor="@color/white"
         android:textSize="19sp"
         />
 </RelativeLayout>
-    <ScrollView
-     android:paddingTop="5dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:scrollbarStyle="insideOverlay"
-        android:id="@+id/commit_scroll"
+
+    <ListView
+        android:layout_marginBottom="30dp"
+        android:layout_below="@id/we_comment"
+        android:id="@+id/comment_2"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+
+        android:id="@+id/bottom"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/we_comment"
-        android:layout_marginBottom="56dp"
-        >
+
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+
         <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+        android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             >
-            <include
-                android:id="@+id/comment_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                layout="@layout/comment_main" />
 
-            <ListView
-                android:layout_marginTop="4dp"
-                android:id="@+id/comment_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                ></ListView>
+            <ImageView
 
-            <TextView
-                android:id="@+id/loadmore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="加载更多评论"
+                android:id="@+id/image_face"
+                android:layout_width="26dp"
+                android:layout_height="28dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="7dp"
+                android:src="@drawable/smile"
+                android:visibility="visible" />
 
+            <EditText
+                android:scaleX="1.0"
+                android:textColor="@color/black"
+                android:id="@+id/input_sms"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_toLeftOf="@+id/send_sms"
+                android:layout_toRightOf="@id/image_face"
+                android:background="@color/white"
+android:maxLines="6"
+                android:gravity="center_vertical"
+                android:hint="Reply..."
+
+                android:textSize="16sp" >
+                <requestFocus />
+            </EditText>
+
+
+            <Button
+                android:minWidth="58dp"
+                android:onClick="bt_Commit"
+                android:id="@+id/send_sms"
+                android:layout_width="58dp"
+                android:layout_height="30dp"
+                android:maxLines="2"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/button_shape"
                 android:gravity="center"
-                android:padding="22dp"
-                android:textSize="16dp"
-                android:textColor="@drawable/selector_load_more"
-                />
+                android:text="SEND"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
         </LinearLayout>
-    </ScrollView>
-    <LinearLayout
-        android:id="@+id/area_commit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-      android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        >
 
-        <EditText
-            android:id="@+id/comment_content"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Reply "
-            android:background="@drawable/edit_shape"
-            android:ems="10"
-            android:textSize="15sp"
-            android:minHeight="38dp"
-            android:layout_marginRight="4dip"
-            android:layout_marginLeft="4dp"
+        <View
 
-            >
-            <requestFocus />
-        </EditText>
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#737373" />
 
-        <Button
-            android:id="@+id/comment_commit"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:minWidth="80dp"
-            android:layout_weight="0"
-            android:onClick="bt_Commit"
-            android:paddingLeft="32dp"
-            android:paddingRight="32dp"
-            android:text="SEND"
-
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:gravity="center"
-            android:padding="4dp"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="2dp"
-            android:background="@drawable/button_shape"/>
+        <include
+            android:id="@+id/chat_face_container"
+            layout="@layout/chat_face_container"
+            android:visibility="gone" />
     </LinearLayout>
 
 </RelativeLayout>

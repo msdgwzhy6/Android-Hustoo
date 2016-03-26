@@ -4,17 +4,28 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
+import com.orhanobut.hawk.Hawk;
+import com.orhanobut.hawk.HawkBuilder;
 import com.scb.administrator.a.R;
 import com.scb.administrator.a.adapter.MyAdapter;
 import com.scb.administrator.a.entity.QiangYu;
@@ -53,13 +64,18 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
     private RelativeLayout header;
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school);
+
+        bt = (FloatingActionButton) findViewById(R.id.s_button);
+
         actualListView = (ListView) findViewById(R.id.s_list);
-  //添加你的bmob的Key
-        Bmob.initialize(SchoolActivity.this, KEY);
+
 
 
         header = (RelativeLayout) findViewById(R.id.header_view);
@@ -70,8 +86,11 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
                 lif = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View headerView = lif.inflate(R.layout.header, actualListView, false);
 
+
         //设置不可点击
-        actualListView.addHeaderView(headerView ,null,false);
+        actualListView.addHeaderView(headerView, null, false);
+
+
 
         mSwipeLayout = (SwipeRefreshLayout) SchoolActivity.this.findViewById(R.id.id_swipe_ly_s);
         mSwipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
@@ -79,17 +98,16 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
         mSwipeLayout.setOnRefreshListener(this);
 
 
-
         mData = new ArrayList<>();
-        mAdapter = new MyAdapter(SchoolActivity.this,mData);
+        mAdapter = new MyAdapter(SchoolActivity.this, mData);
         actualListView.setAdapter(mAdapter);
 
+        Hawk.init(SchoolActivity.this)
+                .setEncryptionMethod(HawkBuilder.EncryptionMethod.NO_ENCRYPTION)
+                .setStorage(HawkBuilder.newSqliteStorage(SchoolActivity.this))
+                .build();
 
 
-
-
-
-        bt = (FloatingActionButton) findViewById(R.id.s_button);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,18 +127,16 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
                 intent.setClass(SchoolActivity.this, CommentActivity.class);
-                intent.putExtra("data", mData.get(position - 1));
+                intent.putExtra("data", mAdapter.getItem(position - 1));
                 startActivity(intent);
             }
         });
 
 
-
-
         fetchComment();
 
-
-        actualListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+      //  mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
+     actualListView.setOnScrollListener(new AbsListView.OnScrollListener() {
 
 
             @Override
@@ -135,7 +151,7 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
                         if (actualListView.getLastVisiblePosition() == (actualListView
                                 .getCount() - 1)) {
 
-                       fetchComment();
+                            fetchComment();
                             bt.hide();
 
                         }
@@ -160,17 +176,16 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
 
 
                 if (scrollFlag
-                        && ScreenUtil.getScreenViewBottomHeight(actualListView) <= ScreenUtil
-                        .getScreenHeight(SchoolActivity.this)) {
+                      ) {
                     if (firstVisibleItem < lastVisibleItemPosition) {
                         // 上滑
                         //toTopBtn.setVisibility(View.VISIBLE);
-                        header.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
+                        header.animate().setDuration(300).translationY(0).setInterpolator(new DecelerateInterpolator(2));
                         bt.show();
                     } else if (firstVisibleItem > lastVisibleItemPosition) {
                         // 下滑
                         // toTopBtn.setVisibility(View.GONE);
-                        header.animate().translationY(-header.getHeight()).setInterpolator(new AccelerateInterpolator(2));
+                        header.animate().setDuration(300).translationY(-header.getHeight()).setInterpolator(new AccelerateInterpolator(2));
                         bt.hide();
                     } else {
                         return;
@@ -183,7 +198,6 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
         });
 
 
-
     }
 
     private void fetchComment() {
@@ -194,13 +208,13 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
         BmobDate date = new BmobDate(new Date(System.currentTimeMillis()));
         query.addWhereLessThan("updatedAt", date);
         query.include("author");
-        query.setLimit(8);
-        query.setSkip(8 * (pageNum++));
+        query.setLimit(10);
+        query.setSkip(10* (pageNum++));
         query.findObjects(this, new FindListener<QiangYu>() {
 
 
             @Override
-            public void onSuccess(List<QiangYu> data) {
+            public void onSuccess(List<QiangYu> data)  {
                 // TODO Auto-generated method stub
 
                 if (data.size() != 0 && data.get(data.size() - 1) != null) {
@@ -220,7 +234,11 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
             @Override
             public void onError(int arg0, String arg1) {
                 // TODO Auto-generated method stub
-
+                List<QiangYu> value = Hawk.get("10");
+                if(value!=null) {
+                    mAdapter.getDataList().addAll(value);
+                    mAdapter.notifyDataSetChanged();
+                }
                 Toast.makeText(SchoolActivity.this, "检查一下网络", Toast.LENGTH_SHORT).show();
                 pageNum--;
             }
@@ -238,8 +256,14 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
 
     public void back(View view) {
         finish();
+        overridePendingTransition(0, R.anim.slide_out_to_left);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        overridePendingTransition(0, R.anim.slide_out_to_left);
+    }
 
     @Override
     public void onRefresh() {
@@ -248,4 +272,16 @@ public class SchoolActivity extends Activity implements SwipeRefreshLayout.OnRef
         mAdapter.notifyDataSetChanged();
         fetchComment();
     }
+
+
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+    }
+
+
+
+
 }
+

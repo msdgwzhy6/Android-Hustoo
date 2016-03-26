@@ -39,7 +39,7 @@ public class NoticeAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public Notice getItem(int position) {
 		return mList.get(position);
 	}
 
@@ -57,16 +57,19 @@ public class NoticeAdapter extends BaseAdapter {
 			holder = new Holder();
 			holder.mNameText = (TextView)convertView.findViewById(R.id.ItemTitle);
 			holder.mIDText = (TextView)convertView.findViewById(R.id.ItemText);
+			holder.mTimeText = (TextView)convertView.findViewById(R.id.ItemTime);
 			convertView.setTag(holder);
 		} else {
 			holder = (Holder) convertView.getTag();
+
 		}
 		holder.mNameText.setText(mList.get(position).getNotice());
 		holder.mIDText.setText(mList.get(position) .getUri());
+		holder.mTimeText.setText(mList.get(position).getTime());
 		return convertView;
 	}
 
 	class Holder {
-		private TextView mNameText, mIDText;
+		private TextView mNameText, mIDText,mTimeText;
 	}
 }

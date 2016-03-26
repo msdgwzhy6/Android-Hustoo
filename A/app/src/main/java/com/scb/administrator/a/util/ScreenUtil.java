@@ -44,9 +44,7 @@ public class ScreenUtil {
 	 * 
 	 * @return
 	 */
-	public static int getScreenViewTopHeight(View view) {
-		return view.getTop();
-	}
+
 
 	/**
 	 * 获取屏幕中控件底部位置的高度--即控件底部的Y点
@@ -62,17 +60,5 @@ public class ScreenUtil {
 	 * 
 	 * @return
 	 */
-	public static int getScreenViewLeftHeight(View view) {
-		return view.getLeft();
-	}
-
-	/**
-	 * 获取屏幕中控件右侧的位置--即控件右侧的X点
-	 * 
-	 * @return
-	 */
-	public static int getScreenViewRightHeight(View view) {
-		return view.getRight();
-	}
 
 }

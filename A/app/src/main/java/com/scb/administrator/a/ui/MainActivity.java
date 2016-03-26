@@ -3,13 +3,13 @@ package com.scb.administrator.a.ui;
 
 
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Handler;
-import android.os.Message;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -26,9 +26,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewSwitcher;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
@@ -37,7 +38,6 @@ import com.scb.administrator.a.DrawerArrowDrawable;
 import com.scb.administrator.a.MyApplication;
 import com.scb.administrator.a.R;
 import com.scb.administrator.a.adapter.FragmentAdapter;
-import com.scb.administrator.a.util.AboutActivity;
 
 
 import java.text.SimpleDateFormat;
@@ -66,78 +66,60 @@ public class MainActivity extends FragmentActivity {
      */
   private  List<String> titleList = new ArrayList<>();
 
-
+private  SharedPreferences skinSettingPreference;
     private DrawerArrowDrawable drawerArrowDrawable;
     private float offset;
     private boolean flipped;
 
     private DrawerLayout drawer;
-
-    private ImageView login;
-
-    public final Handler.Callback mHandlerCallback = new Handler.Callback(){
-
-
-        @Override
-        public boolean handleMessage(Message msg) {
-
-
-            switch (msg.what){
-
-                case 0:
-                    final ViewSwitcher container = (ViewSwitcher) findViewById(R.id.view_container);
-                    container.showNext();
-                    ImageView view = (ImageView) container.getChildAt(0);
-                    view.setImageResource(0);
-                    container.removeViewAt(0);
-                    mSplashing = false;
-                    return true;
-
-                default:
-                    return false;
-
-            }
-
-
-        }
+private int skin_type;
+    private ImageView login,iv;
+    int[]  skinResources = {  R.drawable.back2,R.drawable.back8
     };
 
-    private   Handler mHandler = new Handler(mHandlerCallback);
+
+
+
 
 
 
     private RelativeLayout header;
 
     private View v;
-  /*  private Handler mMainHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case MSG_SHOW_LAYOUT:
-                    final ViewSwitcher container = (ViewSwitcher) findViewById(R.id.view_container);
-                    container.showNext();
-                    ImageView view = (ImageView) container.getChildAt(0);
-                    view.setImageResource(0);
-                    container.removeViewAt(0);
-                    mSplashing = false;
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
-    */
-    private boolean mSplashing;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mSplashing = true;
-        mHandler.sendEmptyMessageDelayed(0, 2000);
-      //  mMainHandler.sendEmptyMessageDelayed(MSG_SHOW_LAYOUT, 3000);
-        //添加你的bmob的Key
-        Bmob.initialize(MainActivity.this,  KEY );
+
+
+
+
+
+
+
+
+
+
+
+
+
+       skinSettingPreference = MainActivity.this.getSharedPreferences("skin",  Context.MODE_PRIVATE);
+        String key = "skin_type";
+       skin_type = skinSettingPreference.getInt(key, 0);
+
+        iv = (ImageView) findViewById(R.id.back);
+     try {
+         Drawable d = this.getResources().getDrawable(skinResources[skin_type]);
+         iv.setImageDrawable(d);
+     }catch (Throwable e) {
+         e.printStackTrace();
+
+     }
+
+
 
         initView();
 
@@ -157,11 +139,13 @@ public class MainActivity extends FragmentActivity {
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
+
                 } else {
 
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
+
                 }
             }
         });
@@ -173,7 +157,7 @@ public class MainActivity extends FragmentActivity {
 
 
         titleList.add("首页");
-        titleList.add("校园角New10");
+        titleList.add("校园角Hot10");
         titleList.add("教务通知");
 
 
@@ -182,7 +166,7 @@ public class MainActivity extends FragmentActivity {
 
         vp.setAdapter(new FragmentAdapter(getSupportFragmentManager(), fragmentList, titleList));
 
-
+   tabs.setDividerColor(Color.TRANSPARENT);
         tabs.setTextColor(Color.WHITE);
         tabs.setViewPager(vp);
 
@@ -190,10 +174,13 @@ public class MainActivity extends FragmentActivity {
 
 
 
-        final Resources resources = getResources();
 
-        drawerArrowDrawable = new DrawerArrowDrawable(resources);
-        drawerArrowDrawable.setStrokeColor(resources.getColor(R.color.dark_gray));
+
+        drawerArrowDrawable = new DrawerArrowDrawable(getResources());
+        if(skin_type==0)
+        drawerArrowDrawable.setStrokeColor(getResources().getColor(R.color.white));
+        else
+            drawerArrowDrawable.setStrokeColor(getResources().getColor(R.color.dark_gray));
         final ImageView  imageView = (ImageView) findViewById(R.id.drawer_indicator);
 
         imageView.setImageDrawable(drawerArrowDrawable);
@@ -211,7 +198,7 @@ public class MainActivity extends FragmentActivity {
 
                 offset = slideOffset;
 
-                int alpha = (int) (slideOffset * 252) ;
+                int alpha = (int) (slideOffset * 255) ;
                 v.getBackground().setAlpha(alpha);
                 // Sometimes slideOffset ends up so close to but not quite 1 or 0.
                 if (slideOffset >= .995) {
@@ -261,6 +248,18 @@ public class MainActivity extends FragmentActivity {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     private void initView() {
 
         TextView month, yue;
@@ -295,19 +294,21 @@ public class MainActivity extends FragmentActivity {
         char[] month = date.toCharArray();
 
 
-        if (month[6] == '3')       date="三";
+       if (month[5] == '1') {
+            if (month[6] == '0')  date= "十";
+            else if (month[6] == '1')  date= "十一";
+            else if (month[6] == '2')  date= "十二";
+        }
+        else if (month[6] == '1')  date= "一";
+        else if (month[6] == '2')  date= "二";
+        else if (month[6] == '3')       date="三";
         else if (month[6] == '4')  date="四";
         else if (month[6] == '5')  date="五";
         else if (month[6] == '6')  date= "六";
         else if (month[6] == '7')  date="七";
         else if (month[6] == '8')  date="八";
         else if (month[6] == '9')  date= "九";
-        else if (month[6] == '1') {
-            if (month[5] == '0')  date= "十";
-            else if (month[5] == '1')  date= "十一";
-            else if (month[5] == '2')  date= "十二";
-        } else
-            date=" ";
+        else date=" ";
 
 
         return date;
@@ -324,7 +325,7 @@ public class MainActivity extends FragmentActivity {
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .displayer(new RoundedBitmapDisplayer(180))//是否设置为圆角，弧度为多少
-                .displayer(new FadeInBitmapDisplayer(300))//是否图片加载好后渐入的动画时间
+                .displayer(new FadeInBitmapDisplayer(0))//是否图片加载好后渐入的动画时间
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
 
@@ -346,39 +347,60 @@ public class MainActivity extends FragmentActivity {
 
                         switch (menuItem.getItemId()){
 
-                            case R.id.nav_discussion :
-                                Intent intent=new Intent(Intent.ACTION_SEND);
-                                intent.setType("text/plain");
-                                intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
-                                intent.putExtra(Intent.EXTRA_TEXT, "我正在使用华科Hustoo，快点来吧！http://hustoo.bmob.cn/");
-                                startActivity(Intent.createChooser(intent, "分享到"));
 
-                                break;
                             case R.id.nav_setting:
-                                Toast.makeText(MainActivity.this, "功能开发中，请期待.", Toast.LENGTH_SHORT).show();
+                                SharedPreferences.Editor editor = skinSettingPreference.edit();
+                                String key  = "skin_type";
+
+                                if(skin_type==0) {
+                                    skin_type = 1;
+                                    drawerArrowDrawable.setStrokeColor(getResources().getColor(R.color.dark_gray));
+                                }
+                                else
+                                {  skin_type= 0;
+                                    drawerArrowDrawable.setStrokeColor(getResources().getColor(R.color.white));
+                                   }
+                                editor.putInt(key, skin_type);
+                                editor.commit();
+
+                                try {
+                                    Drawable d = MainActivity.this.getResources().getDrawable(skinResources[skin_type]);
+                                    iv.setImageDrawable(d);
+                                    YoYo.with(Techniques.FadeIn).duration(1000).playOn(iv);
+
+
+                                }catch (Throwable e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(MainActivity.this, "换肤失败.", Toast.LENGTH_SHORT).show();
+
+                                }finally {
+                                    drawer.closeDrawer(START);
+                                }
+
 
                                 break;
 
-                            case R.id.nav_exit:
-                                finish();
-                           break;
+
+
+                            case R.id.nav_book:
+                                startActivity(new Intent(MainActivity.this, BookActivity.class));
+
+                                break;
 
                             case R.id.nav_home:
-                                if (MyApplication.getInstance().getCurrentUser()!= null) {
-                                    Intent it = new Intent();
-                                    it.setClass(MainActivity.this, SchoolActivity.class);
-                                    startActivity(it);
-                                } else {
 
-                                   Toast.makeText(MainActivity.this,"登录才可使用此功能",Toast.LENGTH_SHORT).show();
-                                }
+                                startActivity(new Intent(MainActivity.this, SchoolActivity.class));
+
+
 
                                 break;
 
                             case  R.id.nav_friends:
-                                Intent it = new Intent();
-                                it.setClass(MainActivity.this, AboutActivity.class);
-                                startActivity(it);
+
+
+
+                                startActivity(new Intent(MainActivity.this, AboutActivity.class));
+
                                 break;
 
                         }
@@ -406,16 +428,11 @@ public class MainActivity extends FragmentActivity {
         super.onResume();
     }
 
-    @Override
-    public void onBackPressed() {
-        if (!mSplashing) {
-            super.onBackPressed();
-        }
-    }
+
 
     @Override
     public void onDestroy() {
-        mHandler.removeCallbacksAndMessages(null);
+
         super.onDestroy();
     }
 }

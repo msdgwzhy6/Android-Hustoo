@@ -1,9 +1,17 @@
 package com.scb.administrator.a.adapter;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -37,6 +45,7 @@ public class CommentAdapter extends BaseContentAdapter<Comment> {
 			convertView.setTag(viewHolder);
 		}else{
 			viewHolder = (ViewHolder)convertView.getTag();
+
 		}
 		
 		final Comment comment = dataList.get(position);
@@ -64,16 +73,18 @@ public class CommentAdapter extends BaseContentAdapter<Comment> {
 
 		//显示图片的配置
 		DisplayImageOptions options = new DisplayImageOptions.Builder()
-				.showImageOnLoading(R.drawable.a)
-				.showImageOnFail(R.drawable.a)
+				.showImageOnLoading(R.drawable.ic_default_avatar_lite)
+				.showImageOnFail(R.drawable.ic_default_avatar_lite)
 				.cacheInMemory(true)
 				.cacheOnDisk(true)
 				.displayer(new RoundedBitmapDisplayer(180))//是否设置为圆角，弧度为多少
-				.displayer(new FadeInBitmapDisplayer(500))//是否图片加载好后渐入的动画时间
+				.displayer(new FadeInBitmapDisplayer(0))//是否图片加载好后渐入的动画时间
 				.bitmapConfig(Bitmap.Config.RGB_565)
 				.build();
 
 		ImageLoader.getInstance().displayImage(Imageuri, img, options);
 
 	}
+
+
 }

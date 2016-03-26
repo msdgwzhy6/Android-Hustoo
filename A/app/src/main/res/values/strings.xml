@@ -26,15 +26,22 @@
     <string name="welcome">欢迎</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
-    <string name="Icome">我来</string>
+    <string name="Icome">推荐</string>
     <string name="xiaoYu">晓雨的故事 / RainDroid</string>
     <string name="dayWen">每日一文</string>
     <string name="dayMusic">每日一乐</string>
     <string name="initMusic">我敢在你怀里孤独</string>
-    <string name="shareLocationPrompt">如有精彩内容，可投稿到 ---775721712@163.com </string>
+    <string name="shareLocationPrompt">如有精彩内容，可投稿到 ---1073216732@qq.com </string>
     <string name="imfor">个人信息</string>
     <string name="title_activity_school">SchoolActivity</string>
     <string name="title_activity_about">AboutActivity</string>
-    <string name="about">"Hustoo  Version 1.0 \n\n诞生于 ： 华中科技大学 \n\n联系：775721712@163.com\n\n感谢github上的开源控件 \n\n感谢 http://www.jcodecraeer.com/ 网站\n\n反馈：http://weibo.com/hnjmscb/ \n\n代码整理后可开源 ."</string>
+    <string name="about">"Hustoo  Version 1.3 \n\n诞生于 ： 华中科技大学 \n\n反馈：http://weibo.com/hnjmscb/ \n\n开源地址：https://github.com/cxmscb/Android-Hustoo "</string>
+    <string name="share">分享</string>
+    <string name="web">浏览器打开</string>
+
+    <string name="title_activity_book">图书搜索</string>
+
+    <string name="books">本  月  推  荐  书  单</string>
+    <string name="title_activity_phtoto">PhtotoActivity</string>
 
 </resources>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="comm_tab_selected_strip">#ffffffff</color>
     <color name="light_gray">#c2c7cc</color>
     <color name="dark_gray">#3d454c</color>
     <color name="dark_gray_pressed">#373e44</color>
@@ -7,6 +9,7 @@
     <color name="white">#ffffff</color>
     <color name="main">#18b4ed</color>
     <color name="transpa">#00000000</color>
+ <color name="zone">#118000</color>
     <color name="black">#000000</color>
     <integer-array name="gplus_colors">
         <item>@color/gplus_color_1</item>

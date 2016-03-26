@@ -3,6 +3,7 @@ package com.scb.administrator.a.util;
 public class StringUtils {
 	/**
 	 * 检验邮箱格式是否正确
+	 *
 	 * @param target
 	 * @return
 	 */
@@ -14,4 +15,6 @@ public class StringUtils {
 					.matches();
 		}
 	}
+
+
 }

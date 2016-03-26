@@ -1,5 +1,11 @@
 package com.scb.administrator.a.entity;
 
+
+
+
+
+import net.sf.json.JSONArray;
+
 import java.io.Serializable;
 
 import cn.bmob.v3.BmobObject;
@@ -11,15 +17,22 @@ public class QiangYu extends BmobObject implements Serializable{
 	 * qiang yu entity,每个列表item内容
 	 * 2014/4/27
 	 */
-	private static final long serialVersionUID = -6280656428527540320L;
+
 
 	private User author;
 	private String content;
 	private String reply;
 	private String title;
+    private String pic;
 
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
+
+
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
 
 	public User getAuthor() {

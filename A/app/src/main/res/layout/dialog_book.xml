@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+  android:paddingBottom="6dp"
+    android:layout_height="match_parent">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+
+       android:orientation="horizontal"
+       android:gravity="center_vertical"
+       >
+
+       <ProgressBar
+       android:id = "@+id/progress_bar"
+           style = "?android:attr/progressBarStyleSmall"
+           android:layout_width = "wrap_content"
+       android:layout_height = "wrap_content"
+       />
+    <TextView
+
+        android:textColor="@color/zone"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/book_name"
+android:textSize="16sp"
+        android:text="书名"
+        android:paddingRight="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+   </LinearLayout>
+    <TextView
+        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:text="(Tip:长按可复制图书信息到剪贴板)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp"
+
+        android:paddingBottom="8dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+
+            android:paddingRight="2dp"
+           android:text="馆藏地址"
+
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:paddingRight="2dp"
+            android:text="索书号"
+            android:layout_weight="1"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:paddingLeft="4dp"
+            android:text="状态"
+
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+    <ListView
+        android:fastScrollEnabled="true"
+        android:cacheColorHint="@android:color/transparent"
+        android:id="@+id/book_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+
+</LinearLayout>

@@ -82,6 +82,7 @@ public class RegisterActivity extends Activity {
                 pd.dismiss();
                 Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
+                intent.putExtra("name",nick.getText().toString());
                 intent.setClass(RegisterActivity.this,LoginActivity.class);
                 startActivity(intent);
             }

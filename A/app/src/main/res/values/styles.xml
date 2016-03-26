@@ -1,8 +1,40 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="colorPrimary">#4876FF</item>
+        <item name="colorPrimaryDark">#3A5FCD</item>
+
+    </style>
+
+
+    <style name="Custom" parent="android:Theme.DeviceDefault.Dialog">
+    <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+    <item name="DialogTitleText">正在加载中...</item>
+    <item name="DialogSpotColor">@color/white</item>
+    <item name="DialogSpotCount">5</item>
+
+
+
+
+</style>
+
+    <style name="text_toolbar" parent="android:TextAppearance.DeviceDefault">
+
+        <item name="android:textSize">19sp</item>
+
+
+    </style>
+
+    <style name="processDialog" >
+        <item name="android:backgroundDimEnabled">true</item>
+            <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transpa</item>
+
     </style>
 
 </resources>

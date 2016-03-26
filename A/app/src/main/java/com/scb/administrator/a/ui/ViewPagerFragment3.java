@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.orhanobut.hawk.Hawk;
+import com.orhanobut.hawk.HawkBuilder;
 import com.scb.administrator.a.R;
 import com.scb.administrator.a.adapter.NoticeAdapter;
 import com.scb.administrator.a.entity.Notice;
@@ -28,7 +30,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.litepal.crud.DataSupport;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ public class ViewPagerFragment3 extends Fragment implements SwipeRefreshLayout.O
 
     private NoticeAdapter mAdapter;
     private SwipeRefreshLayout mSwipeLayout;
-
+    ListView list;
     private List<Notice> mData;
 
 
@@ -61,29 +63,15 @@ public class ViewPagerFragment3 extends Fragment implements SwipeRefreshLayout.O
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-       ListView list;
-        mSwipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.id_swipe_ly_3);
-        mSwipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
-                android.R.color.holo_orange_light, android.R.color.holo_red_light);
-        mSwipeLayout.setOnRefreshListener(this);
-        list = (ListView) getActivity().findViewById(R.id.MyListView);
 
-        mData = new ArrayList<>();
 
-        mAdapter = new NoticeAdapter(mData,getActivity());
-        list.setAdapter(mAdapter);
 
-       list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-           @Override
-           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               String url = null;
-               url = mData.get(position).getUri();
-               Intent intent = new Intent();
-               intent.putExtra("url", url);
-               intent.setClass(getActivity(), TongzhiActivity.class);
-               startActivity(intent);
-           }
-       });
+
+        Hawk.init(getActivity())
+                .setEncryptionMethod(HawkBuilder.EncryptionMethod.NO_ENCRYPTION)
+                .setStorage(HawkBuilder.newSqliteStorage(getActivity()))
+                .build();
+
 
 
 
@@ -93,8 +81,33 @@ public class ViewPagerFragment3 extends Fragment implements SwipeRefreshLayout.O
     }
 
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        mSwipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.id_swipe_ly_3);
+        mSwipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
+                android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        mSwipeLayout.setOnRefreshListener(this);
+        list = (ListView) getActivity().findViewById(R.id.MyListView);
+        mData = new ArrayList<>();
 
+        mAdapter = new NoticeAdapter(mData,getActivity());
+        list.setAdapter(mAdapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String url = null;
+                url = mAdapter.getItem(position).getUri();
+                Intent intent = new Intent();
+                intent.putExtra("url", url);
+                intent.setClass(getActivity(), TongzhiActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        super.onViewCreated(view, savedInstanceState);
+    }
 
     /**
      * 覆盖此函数，先通过inflater inflate函数得到view最后返回
@@ -125,19 +138,22 @@ public class ViewPagerFragment3 extends Fragment implements SwipeRefreshLayout.O
             if(!hashMaps.isEmpty()) {
 
 
-          mData = hashMaps;
+
                 mAdapter.refresh(hashMaps);
-                DataSupport.deleteAll(Notice.class);
-                DataSupport.saveAll(hashMaps);
+
+                Hawk.remove("notice");
+                Hawk.put("notice", mData);
+
 
                 mSwipeLayout.setRefreshing(false);
             }
             else {
 
-                List<Notice> allNews = DataSupport.findAll(Notice.class);
-                mAdapter.refresh(allNews);
-   mData = allNews;
+                List<Notice> allNews = Hawk.get("notice");
+                if(allNews!=null) {
+                    mAdapter.refresh(allNews);
 
+                }
                 Toast.makeText(getActivity(),"检查网络后下拉刷新",Toast.LENGTH_SHORT).show();
 
                 mSwipeLayout.setRefreshing(false);
@@ -165,25 +181,32 @@ public class ViewPagerFragment3 extends Fragment implements SwipeRefreshLayout.O
                 int j=0;
                 Elements elements = doc.getElementsByClass("box");
 
+                String  companyName=" " ,address=" ", time= " " ;
                 for(Element element : elements) {
                     ++j;
 
+
+
                     if(i)
                     {
-                        String companyName = element.getElementsByTag("a").text();
+                        companyName  = element.getElementsByTag("a").text();
                         // String time = element.select("td.box").first().text();
-                        String address = "http://jwc.hust.edu.cn"+ element.getElementsByTag("a").attr("href");
-                        Notice item = new Notice(companyName,address);
+                        address = "http://jwc.hust.edu.cn"+ element.getElementsByTag("a").attr("href");
 
-                        mlist.add(item);
                         i=false;
                     }
-                    else i =true;
+                    else {
+                        i = true;
+                        time = "("+element.text()+")";
+                        Notice item = new Notice(companyName,address,time);
 
-                    if(j>20) break;
+                        mlist.add(item);
+                    }
+                    if(j==22) break;
                 }
-                Notice it = new Notice("更多通知\n\nMore Notice",url);
-                mlist.add(it);
+                 if(mlist.size()>2)
+                 {Notice it = new Notice("更多通知\n\nMore Notice",url);
+                mlist.add(it);}
             }
 
             return mlist;

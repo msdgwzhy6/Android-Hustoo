@@ -12,8 +12,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,22 +66,26 @@ public class HomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        headImage = (ImageView) findViewById(R.id.header);
+        headImage.setTranslationY(-300);
 
         TextView nick,out;
         nick = (TextView) findViewById(R.id.nick);
         signature = (TextView) findViewById(R.id.sig);
         out = (TextView) findViewById(R.id.check_new);
-        headImage = (ImageView) findViewById(R.id.header);
+
         header = getApplication().getSharedPreferences("header", Context.MODE_PRIVATE);
         URL = header.getString("url", " ");
+
 
         if(!URL.equals(" ")){
 
             imageInit(URL);
 
         }
-        //添加你的bmob的Key
-        Bmob.initialize(HomeActivity.this, YOUR_Bmob_KEY);
+    headImage.animate().translationY(0).setDuration(1000).setStartDelay(100).setInterpolator(new DecelerateInterpolator());
+
+        Bmob.initialize(HomeActivity.this, "4ef015e97fb35a0f58b00043679e2b9a");
        currentUser = BmobUser.getCurrentUser(this, User.class);
         if (currentUser != null) {
             // 允许用户使用应用,即有了用户的唯一标识符，可以作为发布内容的字段
@@ -328,7 +335,7 @@ signature.setOnClickListener(new View.OnClickListener() {
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .displayer(new RoundedBitmapDisplayer(180))//是否设置为圆角，弧度为多少
-                .displayer(new FadeInBitmapDisplayer(300))//是否图片加载好后渐入的动画时间
+                .displayer(new FadeInBitmapDisplayer(0))//是否图片加载好后渐入的动画时间
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
 
@@ -349,5 +356,12 @@ signature.setOnClickListener(new View.OnClickListener() {
 
     public void back(View view) {
         finish();
+        overridePendingTransition(0, R.anim.slide_out_to_left);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        overridePendingTransition(0, R.anim.slide_out_to_left);
     }
 }

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:padding="12dp"
-    android:layout_width="match_parent" android:background="#ffffff" android:layout_height="wrap_content">
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_height="wrap_content">
 
     <com.scb.administrator.a.CircleImageView
         android:id="@+id/m_logo"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:scaleType="centerInside"
         android:layout_margin="2dp"
         android:src="@drawable/ic_default_avatar_lite"
@@ -16,10 +19,12 @@
 
     <TextView
         android:id="@+id/m_title"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:scaleX="1.0"
         android:text="123"
-        android:textColor="#000000"
+        android:paddingRight="52dp"
+        android:textColor="#11800A"
+        android:layout_marginTop="2dp"
         android:layout_below="@id/m_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -30,7 +35,7 @@
         android:textSize="12sp"
         android:scaleX="1.0"
 
-
+        android:textColor="#11800A"
         android:layout_marginTop="10dp"
         android:layout_below="@id/m_title"
         android:layout_width="wrap_content"
@@ -45,15 +50,33 @@
 
 
     <TextView
-        android:scaleX="1.0"
-        android:text="123"
+        android:text=""
+        android:textColor="#8d8d8d"
+        android:textSize="15sp"
+        android:lineSpacingExtra="4dp"
+        android:textScaleX="1.0"
+
+        android:autoLink="all"
         android:id="@+id/m_content"
-        android:textSize="17sp"
+        android:paddingRight="8dp"
         android:layout_marginTop="26dp"
-        android:layout_marginBottom="8dp"
-        android:textColor="#000000"
+        android:layout_marginBottom="1dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/m_time"
         />
+
+
+    <TextView
+
+        android:id="@+id/m_pic"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/m_content" />
+
+
+
 </RelativeLayout>

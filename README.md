@@ -2,14 +2,15 @@
 华科校园软件Hustoo Hust
 ##简介/Abstract
 
-一款华科校园软件，含教务通知，华科社区，天气预报(Hust)，每日美文鸡汤音乐分享等。 
+#### 一款华科校园软件，及时的教务通知，图书查询，社区聊天，天气提醒更多功能等你来发现和创造（该项目已在github上开源）。等你的加入。
+
+#### A Hust campus software
+
+##### 已同步更新于应用市场
+
+[Apk下载](http://android.myapp.com/myapp/detail.htm?apkName=com.scb.administrator.a)
 <br/><br/>
-A Hust campus software, including educational administration notice, Hust community, 
-<br/><br/>
-weather forecast, daily notes chicken stock share music, etc.
-<br/><br/>
-平台/Platform：AS
-<br/><br/>
+
 ##截图
 <img src="https://raw.githubusercontent.com/cxmscb/Android-Hustoo/master/pic/v1.png"  width="401" heigit="638" alt="Screenshot"/>
 <img src="https://raw.githubusercontent.com/cxmscb/Android-Hustoo/master/pic/v3.png"  width="401" heigit="638" alt="Screenshot"/>

@@ -27,6 +27,8 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
@@ -37,6 +39,10 @@ import com.scb.administrator.a.entity.Wenzhang;
 import com.scb.administrator.a.entity.Wenzi;
 import com.scb.administrator.a.util.HttpDownloader;
 import com.scb.administrator.a.util.Util;
+
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Iterator;
 import java.util.List;
@@ -75,8 +81,8 @@ public class ViewPagerFragment1 extends Fragment implements SwipeRefreshLayout.O
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-  //添加你的bmob的Key
-        Bmob.initialize(getActivity(), key);
+
+
         initViews();
 
         mSwipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -261,6 +267,7 @@ public class ViewPagerFragment1 extends Fragment implements SwipeRefreshLayout.O
         @Override
         protected String[] doInBackground(String... params) {
 
+
             String url = params[0];
             String text[] = {"", ""};
             HttpDownloader httpDownloader = new HttpDownloader();
@@ -307,11 +314,7 @@ public class ViewPagerFragment1 extends Fragment implements SwipeRefreshLayout.O
 
 
 
-               CardView cv ;
 
-                cv= (CardView) getActivity().findViewById(R.id.Cv2);
-
-                YoYo.with(Techniques.Shake).duration(1000).playOn(cv);
 
             }
 

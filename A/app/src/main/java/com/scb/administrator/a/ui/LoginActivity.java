@@ -36,11 +36,16 @@ public class LoginActivity extends Activity  {
     private EditText passwordInput;
     private View positiveAction;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
          initView();
+        Intent intent = getIntent();
+        String msg = intent.getStringExtra("name");
+        if(msg!=null)
+            zhangHao.setText(msg);
         forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +139,7 @@ public class LoginActivity extends Activity  {
                     Intent intent = new Intent();
                     intent.setClass(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
-
+                     finish();
                 } else
                     Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
 
@@ -147,7 +152,8 @@ public class LoginActivity extends Activity  {
 
         Intent intent = new Intent();
         intent.setClass(LoginActivity.this, RegisterActivity.class);
-        startActivity(intent);
+        this.startActivity(intent);
+        finish();
 
     }
 
@@ -155,4 +161,7 @@ public class LoginActivity extends Activity  {
     public void back(View view) {
         finish();
     }
+
+
+
 }

@@ -32,7 +32,7 @@ public class WebViewActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
+        setContentView(R.layout.activity_web_view2);
 
         Intent intent = getIntent();
         num1 = intent.getStringExtra("tittle");
@@ -45,6 +45,8 @@ public class WebViewActivity extends Activity {
 
         webView.getSettings().setSupportZoom(false); // 不支持页面放大功能
 
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setAppCacheEnabled(true);
         webView.setWebChromeClient(new WebChromeClient() {
 
             @Override

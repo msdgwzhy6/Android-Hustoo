@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout
+<LinearLayout
     android:padding="8dp"
     android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+  >
         <com.scb.administrator.a.CircleImageView
             android:id="@+id/i_logo"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:scaleType="centerInside"
             android:layout_margin="2dp"
 
@@ -21,14 +24,17 @@
             android:id="@+id/userName_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="13sp"
 
             android:scaleX="1.0"
-            android:layout_margin="15dp"
-            android:textColor="#11800A"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="14dp"
+
             android:text = "userName"
             />
         <TextView
+            android:alpha="0.8"
             android:id="@+id/index_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,26 +42,29 @@
             android:gravity="center"
             android:textColor="#ffffff"
             android:textSize="11sp"
-android:layout_marginTop="16dp"
-            android:layout_marginRight="5dp"
+android:layout_marginTop="55dp"
+
             android:layout_alignParentRight="true"
+
             android:background="@drawable/textview_style2"
             />
         <TextView
+            android:textColor="#11800A"
             android:layout_below="@id/userName_comment"
             android:id="@+id/content_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="54dp"
-            android:paddingRight="6dp"
+            android:paddingLeft="58dp"
 
+            android:paddingRight="33dp"
             android:layout_marginTop="7dp"
-            android:layout_marginBottom="7dp"
+            android:layout_marginBottom="10dp"
             android:text = "评论"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:scaleX="1.0"
-            android:textColor="#8E8E8E"
+
 
             />
     </RelativeLayout>
 
+</LinearLayout>

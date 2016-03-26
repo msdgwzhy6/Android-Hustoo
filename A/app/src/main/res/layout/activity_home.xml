@@ -1,6 +1,9 @@
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
   android:orientation="vertical"
+    android:id="@+id/linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -75,7 +78,7 @@
            android:scaleType="centerInside"
 
            android:layout_centerHorizontal="true"
-           android:layout_marginTop="21dp"
+           android:layout_marginTop="28dp"
            android:src="@drawable/ic_default_avatar_lite"
            />
 

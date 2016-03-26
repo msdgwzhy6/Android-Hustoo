@@ -1,24 +1,27 @@
 package com.scb.administrator.a.ui;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.scb.administrator.a.R;
 
 
-public class TongzhiActivity extends Activity {
+public class TongzhiActivity extends AppCompatActivity {
 
    private  String num1;
    private WebView webView;
@@ -32,9 +35,32 @@ public class TongzhiActivity extends Activity {
         Intent intent = getIntent();
         num1 = intent.getStringExtra("url");
 
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar_activity_main);
+        mToolbar.setTitle("教务通知");
+
+        setSupportActionBar(mToolbar);
+
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_about:
+
+                        Uri uri = Uri.parse(num1);
+                        Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(it);
+
+                        break;
+
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
         webView = (WebView) findViewById(R.id.webview);
         pb=(ProgressBar)findViewById(R.id.pb);
-
+        Toast.makeText(TongzhiActivity.this, "点击菜单可用浏览器打开", Toast.LENGTH_SHORT).show();
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webView.getSettings().setUseWideViewPort(true);
        webView.getSettings().setLoadWithOverviewMode(true);
@@ -44,7 +70,14 @@ public class TongzhiActivity extends Activity {
         webView.loadUrl(num1);
         webView.getSettings().setJavaScriptEnabled(true);
 
-
+           webView.setDownloadListener(new DownloadListener() {
+               @Override
+               public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+                   Uri uri = Uri.parse(url);
+                   Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                   startActivity(intent);
+               }
+           });
 
 
        // webView.getSettings().setSupportZoom(false); // 不支持页面放大功能
@@ -57,6 +90,7 @@ public class TongzhiActivity extends Activity {
                 pb.setProgress(newProgress);
                 if(newProgress==100){
                     pb.setVisibility(View.GONE);
+
                 }else{
 
                     if (pb.getVisibility() == View.GONE)
@@ -106,38 +140,14 @@ public class TongzhiActivity extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        menu.add(1, 1, 1, "用浏览器打开");
-
+        // 為了讓 Toolbar 的 Menu 有作用，這邊的程式不可以拿掉
+        getMenuInflater().inflate(R.menu.menu_web, menu);
         return true;
     }
 
-    @Override
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        // TODO Auto-generated method stub
-
-        switch (item.getItemId()) {
-
-            case 1: // do something here
-
-                Uri uri = Uri.parse(num1);
-                Intent it  = new Intent(Intent.ACTION_VIEW,uri);
-                startActivity(it);
-
-                break;
-
-
-            default:
-
-                return super.onOptionsItemSelected(item);
-
-        }
-
-        return true;
-
-    }
 }

@@ -27,10 +27,20 @@ public class MyAdapter extends BaseAdapter {
 
     private  Context mContext;
     private  List<QiangYu> mdata;
+    private   DisplayImageOptions options;
 
     public MyAdapter(Context mContext, List<QiangYu> mdata) {
         this.mContext = mContext;
         this.mdata = mdata;
+    options   = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.ic_default_avatar_lite)
+                .showImageOnFail(R.drawable.ic_default_avatar_lite)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .displayer(new RoundedBitmapDisplayer(180))//是否设置为圆角，弧度为多少
+                .displayer(new FadeInBitmapDisplayer(0))//是否图片加载好后渐入的动画时间
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
     }
 
     public void refresh(List<QiangYu> list) {
@@ -52,7 +62,7 @@ public class MyAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public QiangYu getItem(int position) {
         return mdata.get(position);
     }
 
@@ -69,38 +79,31 @@ public class MyAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.ai_item, null);
             holder = new Holder();
             holder.tv_name = (TextView)convertView.findViewById(R.id.user_name);
+            holder.tv_comment = (TextView) convertView.findViewById(R.id.item_action_comment);
             holder.tv_title = (TextView)convertView.findViewById(R.id.title_text);
             holder.tv_reply = (TextView)convertView.findViewById(R.id.reply_text);
             holder.iv = (CircleImageView) convertView.findViewById(R.id.user_logo);
             convertView.setTag(holder);
         } else {
             holder = (Holder) convertView.getTag();
+
         }
         holder.tv_name.setText(mdata.get(position).getAuthor().getUsername());
         holder.tv_title.setText(mdata.get(position).getTitle());
-        holder.tv_reply.setText(mdata.get(position).getReply());
+        holder.tv_reply.setText("Last Reply  at  "+mdata.get(position).getUpdatedAt());
+        holder.tv_comment.setText(" "+mdata.get(position).getComment()+" ");
         imageInit(mdata.get(position).getAuthor().getAvatar(),holder.iv);
         return convertView;
     }
 
     class Holder {
-        private TextView tv_name ,tv_title,tv_reply;
+        private TextView tv_name ,tv_title,tv_reply,tv_comment;
         private CircleImageView iv;
     }
     private void imageInit(String Imageuri, CircleImageView img) {
 
 
         //显示图片的配置
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.a)
-                .showImageOnFail(R.drawable.a)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .displayer(new RoundedBitmapDisplayer(180))//是否设置为圆角，弧度为多少
-                .displayer(new FadeInBitmapDisplayer(500))//是否图片加载好后渐入的动画时间
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-
         ImageLoader.getInstance().displayImage(Imageuri, img, options);
 
     }

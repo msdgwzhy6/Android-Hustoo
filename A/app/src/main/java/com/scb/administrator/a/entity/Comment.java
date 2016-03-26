@@ -17,7 +17,7 @@ import cn.bmob.v3.BmobObject;
 
 public class Comment extends BmobObject{
 	
-	public static final String TAG = "Comment";
+
 
 	private User user;
 	private String commentContent;

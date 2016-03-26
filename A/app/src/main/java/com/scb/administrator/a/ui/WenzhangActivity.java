@@ -37,8 +37,7 @@ public class WenzhangActivity extends Activity implements SwipeRefreshLayout.OnR
         setContentView(R.layout.wenzhang);
 
         initView();
-          //添加你的bmob的Key
-        Bmob.initialize(WenzhangActivity.this, KEY);
+
         Intent intent = getIntent();
         num1 = intent.getStringExtra("tittle");
         title.setText(num1);

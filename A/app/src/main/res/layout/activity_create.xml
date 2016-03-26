@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     android:background="@color/white">
     <RelativeLayout
@@ -32,7 +33,7 @@
     android:layout_toRightOf="@id/left"
 
 
-
+android:paddingLeft="2dp"
             android:text="发布话题"
 
             android:gravity="center_vertical"
@@ -57,13 +58,20 @@
 
     </RelativeLayout>
 
+    <ScrollView
+        android:layout_below="@id/re_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/re_create"
+
         android:inputType="textMultiLine"
-        app:met_maxCharacters="15"
+        app:met_maxCharacters="21"
         android:scaleX="1.0"
         android:hint="Title"
 
@@ -71,7 +79,9 @@
         android:paddingRight="4dip"
         android:gravity="start"
         android:textSize="16sp"
-        android:layout_margin="16dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
 
         app:met_primaryColor="@color/main"
         app:met_floatingLabel="highlight"
@@ -80,14 +90,27 @@
 
         <requestFocus />
     </com.rengwuxian.materialedittext.MaterialEditText>
+
+    <TextView
+        android:id="@+id/edit_pic"
+
+        android:textSize="13sp"
+        android:textColor="@color/white"
+        android:background="@color/main"
+        android:text=" 添加图片"
+        android:padding="6dp"
+        android:layout_below="@id/edit_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edit_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edit_title"
+        android:layout_below="@id/edit_pic"
         android:inputType="textMultiLine"
-      android:maxLength="150"
-      android:minLines="12"
+    android:maxHeight="280dp"
+      android:minLines="10"
         android:scaleX="1.0"
         app:met_primaryColor="@color/main"
         app:met_floatingLabel="highlight"
@@ -96,10 +119,33 @@
         app:met_floatingLabelText="说点故事吧"
         android:gravity="left"
         android:textSize="16sp"
-        android:layout_margin="12dp"
+        android:layout_margin="10dp"
         android:hint="说点故事吧"
         >
     </com.rengwuxian.materialedittext.MaterialEditText>
+
+<HorizontalScrollView
+    android:scrollbars="none"
+    android:layout_marginTop="14dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_height="80dip"
+    android:layout_below="@id/edit_content"
+    android:layout_width="match_parent"
+   >
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:id="@+id/get_pic"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        >
+        </LinearLayout>
+</HorizontalScrollView>
+        </RelativeLayout>
+    </ScrollView>
     </RelativeLayout>
 
 
